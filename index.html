@@ -2,17 +2,40 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SkyLine Business</title>
-  <link rel="manifest" href="/manifest.json" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="app"></div>
+  <div id="app">
+    <h1>SkyLine Business</h1>
+    <div id="auth-section">
+      <input type="email" id="email" placeholder="Email" />
+      <input type="password" id="password" placeholder="Password" />
+      <button onclick="signup()">Signup</button>
+      <button onclick="login()">Login</button>
+    </div>
+    <div id="user-section" style="display:none;">
+      <button onclick="logout()">Logout</button>
+      <h2>Welcome, <span id="user-email"></span></h2>
+      <h3>Add Transaction</h3>
+      <input type="number" id="amount" placeholder="Amount" />
+      <input type="text" id="note" placeholder="Note" />
+      <input type="date" id="date" />
+      <select id="type">
+        <option value="income">Income</option>
+        <option value="expense">Expense</option>
+      </select>
+      <button onclick="addTransaction()">Add</button>
+      <ul id="transactions"></ul>
+    </div>
+  </div>
+
   <script type="module" src="main.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/service-worker.js');
+      navigator.serviceWorker.register('service-worker.js');
     }
   </script>
 </body>
