@@ -1,9 +1,9 @@
 {
-    "name": "SkyLine Business",
-    "short_name": "SkyLine",
-    "start_url": ".",
-    "display": "standalone",
-    "background_color": "#ffffff",
-    "description": "Simple accounting PWA app",
-    "icons": []
+  "name": "SkyLine Business",
+  "short_name": "SkyLine",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "description": "Simple accounting PWA app",
+  "icons": []
 }
