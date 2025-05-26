@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import { getFirestore, collection, addDoc, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 // Your Firebase config
@@ -16,6 +16,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
+const provider = new GoogleAuthProvider();
 
 // DOM
 const authSection = document.getElementById('auth-section');
@@ -23,31 +24,19 @@ const userSection = document.getElementById('user-section');
 const userEmailSpan = document.getElementById('user-email');
 const transactionsUl = document.getElementById('transactions');
 
-window.signup = async function() {
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
+window.googleLogin = async function () {
   try {
-    await createUserWithEmailAndPassword(auth, email, password);
+    await signInWithPopup(auth, provider);
   } catch (e) {
     alert(e.message);
   }
 };
 
-window.login = async function() {
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-  try {
-    await signInWithEmailAndPassword(auth, email, password);
-  } catch (e) {
-    alert(e.message);
-  }
-};
-
-window.logout = async function() {
+window.logout = async function () {
   await signOut(auth);
 };
 
-window.addTransaction = async function() {
+window.addTransaction = async function () {
   const amount = parseFloat(document.getElementById('amount').value);
   const note = document.getElementById('note').value;
   const date = document.getElementById('date').value;
