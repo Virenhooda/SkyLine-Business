@@ -1,1 +1,0 @@
-// Firebase and app logic placeholder
